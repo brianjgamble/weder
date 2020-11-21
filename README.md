@@ -4,7 +4,7 @@
 
 # weder
 
-Command-line weather using the Forecast API
+Command-line weather using the Open Weather API
 
 ## Example
 
