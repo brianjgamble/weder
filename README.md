@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="160" src="weder-logo.png" alt="weder">
+</p>
+
 # weder
 
 Command-line weather using the Forecast API
