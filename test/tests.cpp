@@ -1,13 +1,36 @@
+#include "../src/data.h"
+#include "data/factory.h"
 #include <doctest/doctest.h>
 
-int factorial(int number) {
-    return number > 1 ? factorial(number - 1) * number : 1;
+TEST_CASE("can handle valid json weather data") {
+    auto j = Factory::currentConditions();
+    weder::Data data {j};
+
+    SUBCASE("returns the valid city") {
+        CHECK(data.getCity() == "Olympia");
+    }
+
+    SUBCASE("returns the currentConditions temperature") {
+        CHECK(data.getCurrentTemperature() == "45");
+    }
+
+    SUBCASE("returns the weather parameters") {
+        CHECK(data.getWeatherParameters() == "Rain, Mist");
+    }
 }
 
-TEST_CASE("testing the factorial function") {
-    CHECK(factorial(0) == 1);
-    CHECK(factorial(1) == 1);
-    CHECK(factorial(2) == 2);
-    CHECK(factorial(3) == 6);
-    CHECK(factorial(10) == 3628800);
+TEST_CASE("can handle blank json weather data") {
+    weder::Data data {json {}};
+
+    SUBCASE("returns a blank city") {
+        CHECK(data.getCity() == "");
+    }
+
+    SUBCASE("returns the currentConditions temperature") {
+        CHECK(data.getCurrentTemperature() == "");
+    }
+
+    SUBCASE("returns the weather parameters") {
+        CHECK(data.getWeatherParameters() == "");
+    }
 }

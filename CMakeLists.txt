@@ -15,7 +15,12 @@ endif ()
 
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 
-conan_cmake_run(REQUIRES doctest/[>=2.4.0]
+conan_cmake_run(
+        REQUIRES
+        doctest/[>=2.4.0]
+        fmt/7.1.2
+        cpp-httplib/0.7.12
+        nlohmann_json/3.9.1
         BASIC_SETUP CMAKE_TARGETS
         BUILD missing)
 
