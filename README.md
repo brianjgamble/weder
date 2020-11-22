@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="160" src="weder-logo.png" alt="weder">
+  <img width="170" src="weder-logo.png" alt="weder">
 </p>
 
 # weder
