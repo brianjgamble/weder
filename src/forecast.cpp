@@ -18,7 +18,7 @@
 #include <fmt/core.h>
 
 weder::Data& weder::Forecast::currentConditions(int zip) {
-    json j = httpLib->get(fmt::format("/data/2.5/weather?zip={}&units=imperial", zip));
+    json j = api->get(fmt::format("/data/2.5/weather?zip={}&units=imperial", zip));
     static weder::Data data {j};
     return data;
 }

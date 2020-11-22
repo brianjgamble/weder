@@ -22,10 +22,10 @@
 namespace weder {
     class Forecast {
       public:
-        explicit Forecast(WeatherApi* httpLib) : httpLib {httpLib} {}
+        explicit Forecast(WeatherApi* api) : api {api} {}
         Data& currentConditions(int zip);
 
       private:
-        WeatherApi* httpLib;
+        WeatherApi* api;
     };
 }
