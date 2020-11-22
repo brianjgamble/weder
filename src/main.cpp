@@ -2,29 +2,51 @@
 #include "http_weather_api.h"
 #include <fmt/core.h>
 
+void usage() {
+    fmt::print("Usage:\n\tweder [options]\n");
+    fmt::print("\nOptions (required):\n");
+    fmt::print("\t--zip         Specify the zip code for the current conditions\n");
+    fmt::print("\t--apiKey      Provide your OpenWeather API key\n");
+}
+
 int main(int argc, char* argv[]) {
     int zip;
     std::string apiKey {};
 
-    if (argc != 3) {
-        fmt::print("Usage:\n\tweder [flags]\n");
-        fmt::print("\nFlags:\n");
-        fmt::print("\t--zip         Specify the zip code for the current conditions\n");
-        fmt::print("\t--apiKey      Provide your OpenWeather API key\n");
+    if (argc != 5) {
+        usage();
         return 1;
     }
     else {
-        std::string zipToken    = "--zip=";
-        std::string apiKeyToken = "--apiKey=";
+        std::string zipToken    = "--zip";
+        std::string apiKeyToken = "--apiKey";
 
-        for (int i = 0; i < argc; i++) {
+        int i = 1;
+        while (i < argc) {
             auto s = std::string {argv[i]};
 
-            if (s.find(zipToken) != std::string::npos) {
-                zip = std::stoi(s.substr(6));
+            if (s == zipToken) {
+                if (++i < argc) {
+                    try {
+                        zip = std::stoi(argv[i++]);
+                        continue;
+                    }
+                    catch (...) {
+                        fmt::print("Invalid zip\n");
+                        return 1;
+                    }
+                }
             }
-            else if (s.find(apiKeyToken) != std::string::npos) {
-                apiKey = s.substr(9);
+            else if (s == apiKeyToken) {
+                if (++i < argc) {
+                    apiKey = argv[i++];
+                    continue;
+                }
+            }
+            else {
+                fmt::print("Invalid option: {}\n\n", s);
+                usage();
+                return 1;
             }
         }
     }

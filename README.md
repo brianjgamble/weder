@@ -11,7 +11,7 @@ Command-line weather using the Open Weather API
 Get the current conditions by zip code:
 
 ```shell script
-weder --zip=12345 --apiKey=abcdef12345
+weder --zip 12345 --apiKey abcdef12345
 ```
 
 ## Requiremens for Building
