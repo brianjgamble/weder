@@ -2,11 +2,10 @@
   <img width="160" src="weder-logo.png" alt="weder">
 </p>
 
+# weder
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Language](https://img.shields.io/badge/language-C++-blue.svg)](https://isocpp.org/)
 [![Standard](https://img.shields.io/badge/c%2B%2B-20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B17)
-
-# weder
 
 Command-line weather using the Open Weather API
 
