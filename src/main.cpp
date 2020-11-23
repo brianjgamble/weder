@@ -1,25 +1,24 @@
+#include "config.h"
 #include "forecast.h"
 #include "http_weather_api.h"
 #include <fmt/core.h>
 
 void usage() {
-    fmt::print("Usage:\n\tweder [options]\n");
-    fmt::print("\nOptions (required):\n");
+    fmt::print("Usage:\n\t{} [options]\n", PROJECT_NAME);
+    fmt::print("\nOptions:\n");
     fmt::print("\t--zip         Specify the zip code for the current conditions\n");
-    fmt::print("\t--apiKey      Provide your OpenWeather API key\n");
+    fmt::print("\t--apiKey      Provide your OpenWeather API key\n\n");
+    fmt::print("\t--version     Display the current version\n");
 }
 
 int main(int argc, char* argv[]) {
     int zip;
     std::string apiKey {};
 
-    if (argc != 5) {
-        usage();
-        return 1;
-    }
-    else {
-        std::string zipToken    = "--zip";
-        std::string apiKeyToken = "--apiKey";
+    if (argc == 5 or argc == 2) {
+        std::string zipToken     = "--zip";
+        std::string apiKeyToken  = "--apiKey";
+        std::string versionToken = "--version";
 
         int i = 1;
         while (i < argc) {
@@ -43,12 +42,20 @@ int main(int argc, char* argv[]) {
                     continue;
                 }
             }
+            else if (s == versionToken) {
+                fmt::print("{} version {}\n", PROJECT_NAME, PROJECT_VERSION);
+                return 0;
+            }
             else {
                 fmt::print("Invalid option: {}\n\n", s);
                 usage();
                 return 1;
             }
         }
+    }
+    else {
+        usage();
+        return 1;
     }
 
     auto* lib = new weder::HttpWeatherApi {apiKey};
