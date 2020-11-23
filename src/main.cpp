@@ -1,4 +1,4 @@
-#include "config.h"
+#include "version.h"
 #include "forecast.h"
 #include "http_weather_api.h"
 #include <fmt/core.h>
