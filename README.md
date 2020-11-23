@@ -18,6 +18,18 @@ Get the current conditions by zip code:
 weder --zip 12345 --apiKey abcdef12345
 ```
 
+### Default Values
+
+To avoid passing the zip and api key, store them in a configuration file named `.weder.json` within the home directory.  
+
+```json
+{
+  "zip": 12345,
+  "apiKey": "abcdef12345"
+}
+```
+
+
 ## Build
 
 ### Requiremens for Building

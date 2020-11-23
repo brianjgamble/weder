@@ -1,4 +1,4 @@
-add_library(weder_src forecast.cpp http_weather_api.cpp data.cpp)
+add_library(weder_src forecast.cpp http_weather_api.cpp data.cpp config.cpp)
 target_link_libraries(
         weder_src
         CONAN_PKG::nlohmann_json
