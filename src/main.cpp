@@ -4,7 +4,7 @@
 #include "version.h"
 #include <fmt/core.h>
 
-enum Commands { CURRENT, VERSION, UNKNOWN };
+enum Commands { CURRENT, VERSION, HELP, UNKNOWN };
 
 weder::Config::Parameters loadConfig();
 Commands parseOptions(int argc, char* argv[], weder::Config::Parameters& params);
@@ -24,6 +24,10 @@ int main(int argc, char* argv[]) {
             getCurrentForecast(params);
             break;
 
+        case HELP:
+            usage();
+            break;
+
         default:
             usage();
             return 1;
@@ -38,43 +42,42 @@ weder::Config::Parameters loadConfig() {
 }
 
 Commands parseOptions(int argc, char* argv[], weder::Config::Parameters& params) {
-    Commands cmd             = UNKNOWN;
-    std::string zipToken     = "--zip";
-    std::string apiKeyToken  = "--apiKey";
-    std::string versionToken = "--version";
+    Commands cmd = CURRENT;
+    int i        = 1;
 
-    int i = 1;
-
-    if (argc > 1 && versionToken == argv[i]) {
-        cmd = VERSION;
-    }
-    else {
-        while (i < argc) {
-            auto s = std::string {argv[i]};
-
-            if (s == zipToken) {
-                if (++i < argc) {
-                    try {
-                        params.zip = std::stoi(argv[i++]);
+    if (argc > 1) {
+        if (std::string("--version") == argv[i]) {
+            cmd = VERSION;
+        }
+        else if (std::string("--help") == argv[i] || std::string("-h") == argv[i]) {
+            cmd = HELP;
+        }
+        else {
+            while (i < argc) {
+                if (std::string("--zip") == argv[i]) {
+                    if (++i < argc) {
+                        try {
+                            params.zip = std::stoi(argv[i++]);
+                            continue;
+                        }
+                        catch (...) {
+                            break;
+                        }
+                    }
+                }
+                else if (std::string("--apiKey") == argv[i]) {
+                    if (++i < argc) {
+                        params.apiKey = argv[i++];
                         continue;
                     }
-                    catch (...) {
-                        break;
-                    }
                 }
-            }
-            else if (s == apiKeyToken) {
-                if (++i < argc) {
-                    params.apiKey = argv[i++];
-                    continue;
+                else {
+                    fmt::print("Unknown option: {}\n\n", argv[i]);
+                    cmd = UNKNOWN;
+                    break;
                 }
-            }
-            else {
-                break;
             }
         }
-
-        cmd = CURRENT;
     }
 
     return cmd;
@@ -92,9 +95,8 @@ void getCurrentForecast(const weder::Config::Parameters& params) {
 }
 
 void usage() {
-    fmt::print("Usage:\n\t{} [options]\n", PROJECT_NAME);
+    fmt::print("Usage:\n\t{} [--version] [--help] [options]\n", PROJECT_NAME);
     fmt::print("\nOptions:\n");
     fmt::print("\t--zip         Specify the zip code for the current conditions\n");
-    fmt::print("\t--apiKey      Provide your OpenWeather API key\n\n");
-    fmt::print("\t--version     Display the current version\n");
+    fmt::print("\t--apiKey      Provide your OpenWeather API key\n");
 }
