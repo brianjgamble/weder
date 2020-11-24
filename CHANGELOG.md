@@ -12,4 +12,6 @@
     
 ## 0.0.1 (2020-11-22)
 
-- Get the current weather conditions by zip code
+- Initial features
+    - Get the current weather conditions by zip code
+    - Display the current version with --version
