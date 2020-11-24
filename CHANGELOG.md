@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.1.0-dev
+## v0.1.0 (2020-11-23)
 
 - Enhancements
     - Read the default zip code and api key from the config file
