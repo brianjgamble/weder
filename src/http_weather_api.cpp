@@ -20,16 +20,17 @@
 
 using namespace httplib;
 
-json weder::HttpWeatherApi::get(std::string_view path) {
-    Client cli(host);
+namespace weder {
+    WeatherApi::Response HttpWeatherApi::get(std::string_view path) {
+        Client cli(host);
+        Response response {};
 
-    std::string url = fmt::format("{}&appid={}", path, apiKey);
-
-    if (auto res = cli.Get(url.c_str())) {
-        if (res->status == 200) {
-            return json::parse(res->body);
+        std::string url = fmt::format("{}&appid={}", path, apiKey);
+        if (auto res = cli.Get(url.c_str())) {
+            response.status  = res->status;
+            response.content = json::parse(res->body);
         }
-    }
 
-    return json();
+        return response;
+    }
 }

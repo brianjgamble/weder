@@ -22,6 +22,11 @@ using json = nlohmann::json;
 namespace weder {
     class WeatherApi {
       public:
-        virtual json get(std::string_view path) = 0;
+        struct Response {
+            int status;
+            json content;
+        };
+
+        virtual Response get(std::string_view path) = 0;
     };
 }

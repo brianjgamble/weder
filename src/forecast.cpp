@@ -18,7 +18,22 @@
 #include <fmt/core.h>
 
 weder::Data& weder::Forecast::currentConditions(int zip) {
-    json j = api->get(fmt::format("/data/2.5/weather?zip={}&units=imperial", zip));
-    static weder::Data data {j};
-    return data;
+    auto response = api->get(fmt::format("/data/2.5/weather?zip={}&units=imperial", zip));
+    if (response.status == 200) {
+        static weder::Data data {response.content};
+        return data;
+    }
+    else {
+        switch (response.status) {
+            case 401:
+                throw std::runtime_error {"Invalid API key"};
+
+            case 404:
+                throw std::runtime_error {"City not found"};
+
+            default:
+                auto msg = response.content["message"].get<std::string>();
+                throw std::runtime_error {msg};
+        }
+    }
 }

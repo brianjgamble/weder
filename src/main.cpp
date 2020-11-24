@@ -86,12 +86,19 @@ Commands parseOptions(int argc, char* argv[], weder::Config::Parameters& params)
 void getCurrentForecast(const weder::Config::Parameters& params) {
     auto* lib = new weder::HttpWeatherApi {params.apiKey};
     weder::Forecast forecast {lib};
-    auto& data = forecast.currentConditions(params.zip);
 
-    fmt::print("Current conditions:\n");
-    fmt::print("{}\n", data.getCity());
-    fmt::print("{}°F\n", data.getCurrentTemperature());
-    fmt::print("{}\n", data.getWeatherParameters());
+    try {
+        auto& data = forecast.currentConditions(params.zip);
+
+        fmt::print("Current conditions:\n");
+        fmt::print("{}\n", data.getCity());
+        fmt::print("{}°F\n", data.getCurrentTemperature());
+        fmt::print("{}\n", data.getWeatherParameters());
+    }
+    catch(std::runtime_error& ex) {
+        fmt::print("Error: {}\n", ex.what());
+        exit(1);
+    }
 }
 
 void usage() {
