@@ -1,7 +1,5 @@
 <img width="410" src="weder-logo.png" alt="weder">
 
-<hr>
-
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Language](https://img.shields.io/badge/language-C++-blue.svg)](https://isocpp.org/)
 [![Standard](https://img.shields.io/badge/c%2B%2B-20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B17)
@@ -17,9 +15,9 @@ Get the current conditions by zip code:
 weder --zip 12345 --apiKey abcdef12345
 ```
 
-### Default Values
+### Configuration
 
-To avoid passing the zip and api key, store them in a configuration file named `.weder.json` within the home directory.  
+To avoid passing the zip and api key, store them in a file named `.weder.json` within the home directory.  
 
 ```json
 {
@@ -28,17 +26,16 @@ To avoid passing the zip and api key, store them in a configuration file named `
 }
 ```
 
+## Building
 
-## Build
-
-### Requiremens for Building
+### Requirements
 - C++20
 - [CMake](https://cmake.org)
 - [Conan](https://conan.io)
 
 ### Instructions
 
-To build the project via CMake:
+From the project's root directory, run the following:
 
 ```
 mkdir build
