@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+#include "../src/commands/help_command.h"
 #include "../src/commands/version_command.h"
 #include "../src/version.h"
 #include "string_output.h"
@@ -27,6 +28,22 @@ TEST_CASE("version command prints the current version") {
 
     cmd.execute();
 
-    CHECK(output.numLines() == 1);
     REQUIRE(expected == output[0]);
+}
+
+TEST_CASE("help command prints the usage information") {
+    auto output = StringOutput {};
+    auto cmd    = weder::HelpCommand {output};
+
+    std::string expected = R"(Usage:
+	weder [--version] [--help] [options]
+
+Options:
+	--zip         Specify the zip code for the current conditions
+	--apiKey      Provide your OpenWeather API key
+)";
+
+    cmd.execute();
+
+    REQUIRE(expected == output.text());
 }

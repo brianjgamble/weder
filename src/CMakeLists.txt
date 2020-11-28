@@ -3,7 +3,8 @@ set(files
         http_weather_api.cpp
         data.cpp
         config.cpp
-        commands/version_command.cpp)
+        commands/version_command.cpp
+        commands/help_command.cpp)
 
 add_library(weder_src ${files})
 target_link_libraries(

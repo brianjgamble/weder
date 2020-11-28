@@ -20,6 +20,6 @@
 
 namespace weder {
     void VersionCommand::execute() {
-        output.writeLine(fmt::format("{} version {}\n", PROJECT_NAME, PROJECT_VERSION));
+        output.write(fmt::format("{} version {}\n", PROJECT_NAME, PROJECT_VERSION));
     }
 }

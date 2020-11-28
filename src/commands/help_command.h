@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
-#ifndef OUTPUT_H
-#define OUTPUT_H
+#pragma once
 
-#include <string>
-
+#include "output.h"
 namespace weder {
-    class Output {
+    class HelpCommand {
       public:
-        virtual void write(const std::string& s) = 0;
+        explicit HelpCommand(Output& output) : output {output} {}
+        void execute();
+
+      private:
+        Output& output;
     };
 }
-#endif

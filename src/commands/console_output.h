@@ -22,8 +22,8 @@
 namespace weder {
     class ConsoleOutput : public Output {
       public:
-        void writeLine(const std::string& s) override {
-            fmt::print("{}\n", s);
+        void write(const std::string& s) override {
+            fmt::print("{}", s);
         }
     };
 }

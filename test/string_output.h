@@ -20,18 +20,24 @@
 
 class StringOutput : public weder::Output {
   public:
-    void writeLine(const std::string& s) override {
-        list.emplace_back(s);
-    }
-
-    [[nodiscard]] int numLines() const {
-        return list.size();
+    void write(const std::string& s) override {
+        lines.emplace_back(s);
     }
 
     const std::string& operator[](int index) const {
-        return list[index];
+        return lines[index];
+    }
+
+    const std::string& text() {
+        static std::string s;
+
+        for (const auto& line : lines) {
+            s += line;
+        }
+
+        return s;
     }
 
   private:
-    std::vector<std::string> list {};
+    std::vector<std::string> lines {};
 };

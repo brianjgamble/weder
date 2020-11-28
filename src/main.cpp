@@ -1,9 +1,9 @@
 #include "commands/console_output.h"
+#include "commands/help_command.h"
 #include "commands/version_command.h"
 #include "config.h"
 #include "forecast.h"
 #include "http_weather_api.h"
-#include "version.h"
 #include <fmt/core.h>
 
 enum Commands { CURRENT, VERSION, HELP, UNKNOWN };
@@ -112,8 +112,6 @@ void printVersion() {
 }
 
 void usage() {
-    fmt::print("Usage:\n\t{} [--version] [--help] [options]\n", PROJECT_NAME);
-    fmt::print("\nOptions:\n");
-    fmt::print("\t--zip         Specify the zip code for the current conditions\n");
-    fmt::print("\t--apiKey      Provide your OpenWeather API key\n");
+    auto cmd = weder::HelpCommand {output};
+    cmd.execute();
 }

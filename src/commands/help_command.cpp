@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-#ifndef OUTPUT_H
-#define OUTPUT_H
-
-#include <string>
+#include "help_command.h"
+#include "../version.h"
+#include <fmt/core.h>
 
 namespace weder {
-    class Output {
-      public:
-        virtual void write(const std::string& s) = 0;
-    };
+    void HelpCommand::execute() {
+        output.write(fmt::format("Usage:\n"));
+        output.write(fmt::format("\t{} [--version] [--help] [options]\n", PROJECT_NAME));
+        output.write(fmt::format("\nOptions:\n"));
+        output.write(
+            fmt::format("\t--zip         Specify the zip code for the current conditions\n"));
+        output.write(fmt::format("\t--apiKey      Provide your OpenWeather API key\n"));
+    }
 }
-#endif
