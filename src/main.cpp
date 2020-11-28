@@ -1,3 +1,5 @@
+#include "commands/console_output.h"
+#include "commands/version_command.h"
 #include "config.h"
 #include "forecast.h"
 #include "http_weather_api.h"
@@ -9,7 +11,10 @@ enum Commands { CURRENT, VERSION, HELP, UNKNOWN };
 weder::Config::Parameters loadConfig();
 Commands parseOptions(int argc, char* argv[], weder::Config::Parameters& params);
 void getCurrentForecast(const weder::Config::Parameters& params);
+void printVersion();
 void usage();
+
+auto output = weder::ConsoleOutput {};
 
 int main(int argc, char* argv[]) {
     auto params  = loadConfig();
@@ -17,7 +22,7 @@ int main(int argc, char* argv[]) {
 
     switch (command) {
         case VERSION:
-            fmt::print("{} version {}\n", PROJECT_NAME, PROJECT_VERSION);
+            printVersion();
             break;
 
         case CURRENT:
@@ -95,10 +100,15 @@ void getCurrentForecast(const weder::Config::Parameters& params) {
         fmt::print("{}°F\n", data.getCurrentTemperature());
         fmt::print("{}\n", data.getWeatherParameters());
     }
-    catch(std::runtime_error& ex) {
+    catch (std::runtime_error& ex) {
         fmt::print("Error: {}\n", ex.what());
         exit(1);
     }
+}
+
+void printVersion() {
+    auto cmd = weder::VersionCommand {output};
+    cmd.execute();
 }
 
 void usage() {
