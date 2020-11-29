@@ -18,8 +18,8 @@
 #include "../src/commands/help_command.h"
 #include "../src/commands/version_command.h"
 #include "../src/version.h"
-#include "data/fake_forecast.h"
-#include "string_output.h"
+#include "helpers/fake_forecast.h"
+#include "helpers/string_output.h"
 #include <doctest/doctest.h>
 #include <fmt/format.h>
 

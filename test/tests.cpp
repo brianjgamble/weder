@@ -1,5 +1,5 @@
 #include "../src/data.h"
-#include "data/factory.h"
+#include "helpers/factory.h"
 #include <doctest/doctest.h>
 
 TEST_CASE("can handle valid json weather data") {
