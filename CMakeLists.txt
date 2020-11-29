@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.17)
-project(weder VERSION 0.1.0 LANGUAGES CXX)
+project(weder LANGUAGES CXX)
+set(VERSION_NUMBER 0.2.0-dev)
 
 # Require C++20 and disable extensions for all targets
 set(CMAKE_CXX_STANDARD 20)
