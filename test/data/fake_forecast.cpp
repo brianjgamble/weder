@@ -14,18 +14,11 @@
  * limitations under the License.
  */
 
-#pragma once
+#include "fake_forecast.h"
+#include "factory.h"
 
-#include "data.h"
-#include "weather_api.h"
-
-namespace weder {
-    class Forecast {
-      public:
-        explicit Forecast(WeatherApi* api) : api {api} {}
-        virtual Data& currentConditions(int zip);
-
-      private:
-        WeatherApi* api;
-    };
+weder::Data& FakeForecast::currentConditions(int zip) {
+    auto j           = Factory::currentConditions();
+    static auto data = weder::Data {j};
+    return data;
 }

@@ -1,5 +1,6 @@
 set(testFiles
         data/factory.cpp
+        data/fake_forecast.cpp
         commands_tests.cpp)
 
 add_library(doctest_main STATIC doctest_main.cpp)

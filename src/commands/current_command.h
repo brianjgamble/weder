@@ -16,16 +16,18 @@
 
 #pragma once
 
-#include "data.h"
-#include "weather_api.h"
-
+#include "../forecast.h"
+#include "output.h"
 namespace weder {
-    class Forecast {
+    class CurrentCommand {
       public:
-        explicit Forecast(WeatherApi* api) : api {api} {}
-        virtual Data& currentConditions(int zip);
+        explicit CurrentCommand(Output& output, Forecast& forecast, int zipCode)
+            : output {output}, forecast {forecast}, zipCode {zipCode} {}
+        void execute();
 
       private:
-        WeatherApi* api;
+        Output& output;
+        Forecast& forecast;
+        int zipCode;
     };
 }

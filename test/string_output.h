@@ -21,23 +21,13 @@
 class StringOutput : public weder::Output {
   public:
     void write(const std::string& s) override {
-        lines.emplace_back(s);
+        written += s;
     }
 
-    const std::string& operator[](int index) const {
-        return lines[index];
-    }
-
-    const std::string& text() {
-        static std::string s;
-
-        for (const auto& line : lines) {
-            s += line;
-        }
-
-        return s;
+    bool captured(const std::string& s) {
+        return (written == s);
     }
 
   private:
-    std::vector<std::string> lines {};
+    std::string written;
 };

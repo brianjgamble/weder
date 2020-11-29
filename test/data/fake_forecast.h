@@ -16,16 +16,10 @@
 
 #pragma once
 
-#include "data.h"
-#include "weather_api.h"
+#include "../../src/forecast.h"
 
-namespace weder {
-    class Forecast {
-      public:
-        explicit Forecast(WeatherApi* api) : api {api} {}
-        virtual Data& currentConditions(int zip);
-
-      private:
-        WeatherApi* api;
-    };
-}
+class FakeForecast : public weder::Forecast {
+  public:
+    FakeForecast() : weder::Forecast(nullptr) {}
+    weder::Data& currentConditions(int zip) override;
+};

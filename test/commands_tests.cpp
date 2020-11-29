@@ -14,21 +14,23 @@
  * limitations under the License.
  */
 
+#include "../src/commands/current_command.h"
 #include "../src/commands/help_command.h"
 #include "../src/commands/version_command.h"
 #include "../src/version.h"
+#include "data/fake_forecast.h"
 #include "string_output.h"
 #include <doctest/doctest.h>
 #include <fmt/format.h>
 
 TEST_CASE("version command prints the current version") {
-    auto output   = StringOutput {};
-    auto cmd      = weder::VersionCommand {output};
-    auto expected = fmt::format("weder version {}\n", PROJECT_VERSION);
+    auto output          = StringOutput {};
+    auto cmd             = weder::VersionCommand {output};
+    std::string expected = fmt::format("weder version {}\n", PROJECT_VERSION);
 
     cmd.execute();
 
-    REQUIRE(expected == output[0]);
+    REQUIRE(output.captured(expected));
 }
 
 TEST_CASE("help command prints the usage information") {
@@ -45,5 +47,21 @@ Options:
 
     cmd.execute();
 
-    REQUIRE(expected == output.text());
+    REQUIRE(output.captured(expected));
+}
+
+TEST_CASE("current command prints the current conditions") {
+    auto output       = StringOutput {};
+    auto fakeForecast = FakeForecast {};
+    auto cmd          = weder::CurrentCommand {output, fakeForecast, 98502};
+
+    std::string expected = R"(Current conditions:
+Olympia
+45°F
+Rain, Mist
+)";
+
+    cmd.execute();
+
+    REQUIRE(output.captured(expected));
 }

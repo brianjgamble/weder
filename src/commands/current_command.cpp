@@ -14,18 +14,21 @@
  * limitations under the License.
  */
 
-#pragma once
-
-#include "data.h"
-#include "weather_api.h"
+#include "current_command.h"
+#include <fmt/core.h>
 
 namespace weder {
-    class Forecast {
-      public:
-        explicit Forecast(WeatherApi* api) : api {api} {}
-        virtual Data& currentConditions(int zip);
+    void CurrentCommand::execute() {
+        try {
+            auto& data = forecast.currentConditions(zipCode);
 
-      private:
-        WeatherApi* api;
-    };
+            output.write(fmt::format("Current conditions:\n"));
+            output.write(fmt::format("{}\n", data.getCity()));
+            output.write(fmt::format("{}°F\n", data.getCurrentTemperature()));
+            output.write(fmt::format("{}\n", data.getWeatherParameters()));
+        }
+        catch (std::runtime_error& ex) {
+            output.write(fmt::format("Error: {}\n", ex.what()));
+        }
+    }
 }

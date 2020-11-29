@@ -4,7 +4,8 @@ set(files
         data.cpp
         config.cpp
         commands/version_command.cpp
-        commands/help_command.cpp)
+        commands/help_command.cpp
+        commands/current_command.cpp)
 
 add_library(weder_src ${files})
 target_link_libraries(

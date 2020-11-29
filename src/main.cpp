@@ -1,4 +1,5 @@
 #include "commands/console_output.h"
+#include "commands/current_command.h"
 #include "commands/help_command.h"
 #include "commands/version_command.h"
 #include "config.h"
@@ -92,18 +93,8 @@ void getCurrentForecast(const weder::Config::Parameters& params) {
     auto* lib = new weder::HttpWeatherApi {params.apiKey};
     weder::Forecast forecast {lib};
 
-    try {
-        auto& data = forecast.currentConditions(params.zip);
-
-        fmt::print("Current conditions:\n");
-        fmt::print("{}\n", data.getCity());
-        fmt::print("{}°F\n", data.getCurrentTemperature());
-        fmt::print("{}\n", data.getWeatherParameters());
-    }
-    catch (std::runtime_error& ex) {
-        fmt::print("Error: {}\n", ex.what());
-        exit(1);
-    }
+    auto cmd = weder::CurrentCommand {output, forecast, params.zip};
+    cmd.execute();
 }
 
 void printVersion() {
