@@ -20,7 +20,7 @@
 namespace weder {
     void CurrentCommand::execute() {
         try {
-            auto& data = forecast.currentConditions(zipCode);
+            auto data = forecast.currentConditions(zipCode);
 
             output.write(fmt::format("Current conditions:\n"));
             output.write(fmt::format("{}\n", data.getCity()));

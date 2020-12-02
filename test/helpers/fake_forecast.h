@@ -21,5 +21,5 @@
 class FakeForecast : public weder::Forecast {
   public:
     FakeForecast() : weder::Forecast(nullptr) {}
-    weder::Data& currentConditions(int zip) override;
+    weder::Data currentConditions(int zip) override;
 };

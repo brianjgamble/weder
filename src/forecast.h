@@ -23,7 +23,7 @@ namespace weder {
     class Forecast {
       public:
         explicit Forecast(WeatherApi* api) : api {api} {}
-        virtual Data& currentConditions(int zip);
+        virtual Data currentConditions(int zip);
 
       private:
         WeatherApi* api;
