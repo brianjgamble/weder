@@ -24,7 +24,7 @@ namespace weder {
 
             output.write(fmt::format("Current conditions:\n"));
             output.write(fmt::format("{}\n", data.getCity()));
-            output.write(fmt::format("{}°F\n", data.getCurrentTemperature()));
+            output.write(fmt::format("{}{}F\n", data.getCurrentTemperature(), "\u00B0"));
             output.write(fmt::format("{}\n", data.getWeatherParameters()));
         }
         catch (std::runtime_error& ex) {
