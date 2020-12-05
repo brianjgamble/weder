@@ -41,7 +41,7 @@ From the project's root directory, run the following:
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-make
+cmake --build . --config Release
 ```
 
 ## Links
