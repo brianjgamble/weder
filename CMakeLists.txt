@@ -21,9 +21,9 @@ include(${CMAKE_BINARY_DIR}/conan.cmake)
 
 conan_cmake_run(
         REQUIRES
-        doctest/[>=2.4.0]
-        fmt/7.1.2
-        cpp-httplib/0.7.12
+        doctest/2.4.4
+        fmt/7.1.3
+        cpp-httplib/0.7.18
         nlohmann_json/3.9.1
         BASIC_SETUP CMAKE_TARGETS
         BUILD missing)
