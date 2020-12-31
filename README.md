@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-orange.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Language](https://img.shields.io/badge/language-C++-blue.svg)](https://isocpp.org/)
 [![Standard](https://img.shields.io/badge/c%2B%2B-20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B17)
-[![Version](https://badge.fury.io/gh/brianjgamble%2Fweder.svg)](https://github.com/brianjgamble/weder/releases)
+[![Version](https://img.shields.io/github/v/tag/brianjgamble/weder?color=brightgreen&sort=semver)](https://github.com/brianjgamble/weder/releases)
 
 Command-line weather using the Open Weather API
 
