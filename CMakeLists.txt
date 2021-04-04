@@ -11,11 +11,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 configure_file(${CMAKE_SOURCE_DIR}/cmake/version.h.in ${CMAKE_CURRENT_SOURCE_DIR}/src/version.h)
 
 # Download automatically, you can also just copy the conan.cmake file
-if (NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
     message(STATUS "Downloading conan.cmake from https://github.com/conan-io/cmake-conan")
-    file(DOWNLOAD "https://github.com/conan-io/cmake-conan/raw/v0.15/conan.cmake"
-            "${CMAKE_BINARY_DIR}/conan.cmake")
-endif ()
+    file(DOWNLOAD "https://raw.githubusercontent.com/conan-io/cmake-conan/v0.16.1/conan.cmake"
+            "${CMAKE_BINARY_DIR}/conan.cmake"
+            TLS_VERIFY ON)
+endif()
 
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 
@@ -23,7 +24,7 @@ conan_cmake_run(
         REQUIRES
         doctest/2.4.4
         fmt/7.1.3
-        cpp-httplib/0.7.18
+        cpp-httplib/0.8.5
         nlohmann_json/3.9.1
         BASIC_SETUP CMAKE_TARGETS
         BUILD missing)
