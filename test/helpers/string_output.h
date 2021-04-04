@@ -19,15 +19,17 @@
 #include <vector>
 
 class StringOutput : public weder::Output {
-  public:
-    void write(const std::string& s) override {
+public:
+    void write(const std::string& s) override
+    {
         written += s;
     }
 
-    bool captured(const std::string& s) {
+    bool captured(const std::string& s)
+    {
         return (written == s);
     }
 
-  private:
+private:
     std::string written;
 };

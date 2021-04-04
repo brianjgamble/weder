@@ -18,7 +18,8 @@
 #include <fmt/core.h>
 
 namespace weder {
-    void CurrentCommand::execute() {
+    void CurrentCommand::execute()
+    {
         try {
             auto data = forecast.currentConditions(zipCode);
 

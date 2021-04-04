@@ -19,11 +19,12 @@
 #include "output.h"
 namespace weder {
     class HelpCommand {
-      public:
-        explicit HelpCommand(Output& output) : output {output} {}
+    public:
+        explicit HelpCommand(Output& output) :
+            output{output} {}
         void execute();
 
-      private:
+    private:
         Output& output;
     };
 }

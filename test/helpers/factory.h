@@ -20,6 +20,6 @@
 using json = nlohmann::json;
 
 class Factory {
-  public:
+public:
     static json currentConditions();
 };

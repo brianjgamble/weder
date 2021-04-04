@@ -19,7 +19,8 @@
 #include <fmt/core.h>
 
 namespace weder {
-    void HelpCommand::execute() {
+    void HelpCommand::execute()
+    {
         output.write(fmt::format("Usage:\n"));
         output.write(fmt::format("\t{} [--version] [--help] [options]\n", PROJECT_NAME));
         output.write(fmt::format("\nOptions:\n"));

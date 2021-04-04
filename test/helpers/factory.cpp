@@ -16,7 +16,8 @@
 
 #include "factory.h"
 
-json Factory::currentConditions() {
+json Factory::currentConditions()
+{
     return R"(
         {
           "coord": {

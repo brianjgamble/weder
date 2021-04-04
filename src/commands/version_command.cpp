@@ -19,7 +19,8 @@
 #include <fmt/format.h>
 
 namespace weder {
-    void VersionCommand::execute() {
+    void VersionCommand::execute()
+    {
         output.write(fmt::format("{} version {}\n", PROJECT_NAME, PROJECT_VERSION));
     }
 }

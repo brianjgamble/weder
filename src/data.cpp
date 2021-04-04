@@ -17,24 +17,27 @@
 #include "data.h"
 #include <string>
 
-std::string weder::Data::getCity() {
+std::string weder::Data::getCity()
+{
     if (j.contains("name"))
         return j["name"].get<std::string>();
     else
-        return std::string {};
+        return std::string{};
 }
 
-std::string weder::Data::getCurrentTemperature() {
+std::string weder::Data::getCurrentTemperature()
+{
     if (j.contains("main") && j["main"].contains("temp")) {
-        auto rounded = (int)round(j["main"]["temp"].get<double>());
+        auto rounded = (int) round(j["main"]["temp"].get<double>());
         return std::to_string(rounded);
     }
     else
-        return std::string {};
+        return std::string{};
 }
 
-std::string weder::Data::getWeatherParameters() {
-    std::string conditions {};
+std::string weder::Data::getWeatherParameters()
+{
+    std::string conditions{};
 
     if (j.contains("weather")) {
         for (auto condition : j["weather"]) {
@@ -43,6 +46,6 @@ std::string weder::Data::getWeatherParameters() {
             conditions += condition["main"];
         }
     }
-    
+
     return conditions;
 }

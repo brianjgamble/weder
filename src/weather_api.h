@@ -21,7 +21,7 @@ using json = nlohmann::json;
 
 namespace weder {
     class WeatherApi {
-      public:
+    public:
         struct Response {
             int status;
             json content;

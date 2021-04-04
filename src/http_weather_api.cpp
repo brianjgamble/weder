@@ -21,9 +21,10 @@
 using namespace httplib;
 
 namespace weder {
-    WeatherApi::Response HttpWeatherApi::get(std::string_view path) {
+    WeatherApi::Response HttpWeatherApi::get(std::string_view path)
+    {
         Client cli(host);
-        Response response {};
+        Response response{};
 
         std::string url = fmt::format("{}&appid={}", path, apiKey);
         if (auto res = cli.Get(url.c_str())) {

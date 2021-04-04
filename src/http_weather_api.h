@@ -20,12 +20,13 @@
 
 namespace weder {
     class HttpWeatherApi : public WeatherApi {
-      public:
-        explicit HttpWeatherApi(std::string_view apiKey) : apiKey {apiKey} {}
+    public:
+        explicit HttpWeatherApi(std::string_view apiKey) :
+            apiKey{apiKey} {}
 
         WeatherApi::Response get(std::string_view path) override;
 
-      private:
+    private:
         const char* host = "api.openweathermap.org";
         std::string apiKey;
     };

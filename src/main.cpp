@@ -7,7 +7,10 @@
 #include "http_weather_api.h"
 #include <fmt/core.h>
 
-enum Commands { CURRENT, VERSION, HELP, UNKNOWN };
+enum Commands { CURRENT,
+                VERSION,
+                HELP,
+                UNKNOWN };
 
 weder::Config::Parameters loadConfig();
 Commands parseOptions(int argc, char* argv[], weder::Config::Parameters& params);
@@ -15,9 +18,10 @@ void getCurrentForecast(const weder::Config::Parameters& params);
 void printVersion();
 void usage();
 
-auto output = weder::ConsoleOutput {};
+auto output = weder::ConsoleOutput{};
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
     auto params  = loadConfig();
     auto command = parseOptions(argc, argv, params);
 
@@ -42,12 +46,14 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-weder::Config::Parameters loadConfig() {
+weder::Config::Parameters loadConfig()
+{
     auto j = weder::Config::load();
     return weder::Config::parse(j);
 }
 
-Commands parseOptions(int argc, char* argv[], weder::Config::Parameters& params) {
+Commands parseOptions(int argc, char* argv[], weder::Config::Parameters& params)
+{
     Commands cmd = CURRENT;
     int i        = 1;
 
@@ -89,20 +95,23 @@ Commands parseOptions(int argc, char* argv[], weder::Config::Parameters& params)
     return cmd;
 }
 
-void getCurrentForecast(const weder::Config::Parameters& params) {
-    auto* lib = new weder::HttpWeatherApi {params.apiKey};
-    weder::Forecast forecast {lib};
+void getCurrentForecast(const weder::Config::Parameters& params)
+{
+    auto* lib = new weder::HttpWeatherApi{params.apiKey};
+    weder::Forecast forecast{lib};
 
-    auto cmd = weder::CurrentCommand {output, forecast, params.zip};
+    auto cmd = weder::CurrentCommand{output, forecast, params.zip};
     cmd.execute();
 }
 
-void printVersion() {
-    auto cmd = weder::VersionCommand {output};
+void printVersion()
+{
+    auto cmd = weder::VersionCommand{output};
     cmd.execute();
 }
 
-void usage() {
-    auto cmd = weder::HelpCommand {output};
+void usage()
+{
+    auto cmd = weder::HelpCommand{output};
     cmd.execute();
 }

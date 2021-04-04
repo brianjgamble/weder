@@ -24,13 +24,14 @@ using json = nlohmann::json;
 
 namespace weder {
     class Data {
-      public:
-        explicit Data(json j) : j {std::move(j)} {}
+    public:
+        explicit Data(json j) :
+            j{std::move(j)} {}
         std::string getCity();
         std::string getCurrentTemperature();
         std::string getWeatherParameters();
 
-      private:
+    private:
         json j;
     };
 }

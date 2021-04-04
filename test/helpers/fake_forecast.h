@@ -19,7 +19,8 @@
 #include "../../src/forecast.h"
 
 class FakeForecast : public weder::Forecast {
-  public:
-    FakeForecast() : weder::Forecast(nullptr) {}
+public:
+    FakeForecast() :
+        weder::Forecast(nullptr) {}
     weder::Data currentConditions(int zip) override;
 };

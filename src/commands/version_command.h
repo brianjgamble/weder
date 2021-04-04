@@ -20,11 +20,12 @@
 
 namespace weder {
     class VersionCommand {
-      public:
-        explicit VersionCommand(Output& output) : output {output} {}
+    public:
+        explicit VersionCommand(Output& output) :
+            output{output} {}
         void execute();
 
-      private:
+    private:
         Output& output;
     };
 }

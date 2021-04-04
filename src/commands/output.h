@@ -21,7 +21,7 @@
 
 namespace weder {
     class Output {
-      public:
+    public:
         virtual void write(const std::string& s) = 0;
     };
 }

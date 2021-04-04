@@ -23,7 +23,7 @@ using json = nlohmann::json;
 #include <string>
 namespace weder {
     class Config {
-      public:
+    public:
         struct Parameters {
             int zip;
             std::string apiKey;

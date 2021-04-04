@@ -21,8 +21,9 @@
 
 namespace weder {
     class ConsoleOutput : public Output {
-      public:
-        void write(const std::string& s) override {
+    public:
+        void write(const std::string& s) override
+        {
             fmt::print("{}", s);
         }
     };

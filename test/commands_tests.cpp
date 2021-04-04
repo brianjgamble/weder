@@ -23,9 +23,10 @@
 #include <doctest/doctest.h>
 #include <fmt/format.h>
 
-TEST_CASE("version command prints the current version") {
-    auto output          = StringOutput {};
-    auto cmd             = weder::VersionCommand {output};
+TEST_CASE("version command prints the current version")
+{
+    auto output          = StringOutput{};
+    auto cmd             = weder::VersionCommand{output};
     std::string expected = fmt::format("weder version {}\n", PROJECT_VERSION);
 
     cmd.execute();
@@ -33,9 +34,10 @@ TEST_CASE("version command prints the current version") {
     REQUIRE(output.captured(expected));
 }
 
-TEST_CASE("help command prints the usage information") {
-    auto output = StringOutput {};
-    auto cmd    = weder::HelpCommand {output};
+TEST_CASE("help command prints the usage information")
+{
+    auto output = StringOutput{};
+    auto cmd    = weder::HelpCommand{output};
 
     std::string expected = R"(Usage:
 	weder [--version] [--help] [options]
@@ -50,10 +52,11 @@ Options:
     REQUIRE(output.captured(expected));
 }
 
-TEST_CASE("current command prints the current conditions") {
-    auto output       = StringOutput {};
-    auto fakeForecast = FakeForecast {};
-    auto cmd          = weder::CurrentCommand {output, fakeForecast, 98502};
+TEST_CASE("current command prints the current conditions")
+{
+    auto output       = StringOutput{};
+    auto fakeForecast = FakeForecast{};
+    auto cmd          = weder::CurrentCommand{output, fakeForecast, 98502};
 
     std::string expected = R"(Current conditions:
 Olympia

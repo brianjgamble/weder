@@ -20,12 +20,12 @@
 #include "output.h"
 namespace weder {
     class CurrentCommand {
-      public:
-        explicit CurrentCommand(Output& output, Forecast& forecast, int zipCode)
-            : output {output}, forecast {forecast}, zipCode {zipCode} {}
+    public:
+        explicit CurrentCommand(Output& output, Forecast& forecast, int zipCode) :
+            output{output}, forecast{forecast}, zipCode{zipCode} {}
         void execute();
 
-      private:
+    private:
         Output& output;
         Forecast& forecast;
         int zipCode;

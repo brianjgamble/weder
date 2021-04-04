@@ -17,7 +17,8 @@
 #include "fake_forecast.h"
 #include "factory.h"
 
-weder::Data FakeForecast::currentConditions(int zip) {
+weder::Data FakeForecast::currentConditions(int zip)
+{
     auto j = Factory::currentConditions();
-    return weder::Data {j};
+    return weder::Data{j};
 }

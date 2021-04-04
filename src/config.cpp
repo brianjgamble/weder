@@ -21,7 +21,8 @@
 
 using json = nlohmann::json;
 
-json weder::Config::load() {
+json weder::Config::load()
+{
     json j;
     auto homePath = std::getenv("HOME");
 
@@ -39,7 +40,8 @@ json weder::Config::load() {
     return j;
 }
 
-weder::Config::Parameters weder::Config::parse(json j) {
+weder::Config::Parameters weder::Config::parse(json j)
+{
     auto params = weder::Config::Parameters();
 
     if (j.contains("zip")) {
@@ -53,6 +55,7 @@ weder::Config::Parameters weder::Config::parse(json j) {
     return params;
 }
 
-bool weder::Config::Parameters::valid() const {
+bool weder::Config::Parameters::valid() const
+{
     return zip > 0 && !apiKey.empty();
 }
