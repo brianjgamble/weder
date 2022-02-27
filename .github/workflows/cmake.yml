@@ -21,11 +21,11 @@ jobs:
         os: [ macos-latest, windows-latest, ubuntu-latest ]
         include:
           - os: ubuntu-latest
-            compiler: gcc-latest
+            compiler: gcc-10
           - os: macos-latest
             compiler: clang
           - os: windows-latest
-            compiler: gcc-latest
+            compiler: gcc-10
 
     steps:
     - uses: actions/checkout@v2
