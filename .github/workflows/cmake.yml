@@ -20,13 +20,13 @@ jobs:
       matrix:
         #os: [ macos-latest, windows-latest, ubuntu-latest ]
         os: [ macos-latest ]
-        include:
-          - os: ubuntu-latest
-            compiler: gcc-10
-          - os: macos-latest
-            compiler: clang
-          - os: windows-latest
-            compiler: gcc-10
+#        include:
+#          - os: ubuntu-latest
+#            compiler: gcc-10
+#          - os: macos-latest
+#            compiler: clang
+#          - os: windows-latest
+#            compiler: gcc-10
 
     steps:
     - uses: actions/checkout@v2
