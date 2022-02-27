@@ -19,7 +19,14 @@ jobs:
     strategy:
       matrix:
         os: [ macos-latest, windows-latest, ubuntu-latest ]
-        compiler: [clang]
+        include:
+          - os: ubuntu-latest
+            compiler: g++-11
+          - os: macos-latest
+            compiler: clang
+          - os: windows-latest
+            compiler: g++-11
+
 
     steps:
     - uses: actions/checkout@v2
