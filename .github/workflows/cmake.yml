@@ -27,6 +27,10 @@ jobs:
             cc: clang
             cxx: clang++
             generator: Ninja
+          - os: windows-latest
+            cc: cl
+            cxx: cl
+            generator: Visual Studio 17 2022
 
     steps:
     - uses: actions/checkout@v2
